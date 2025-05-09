@@ -2,6 +2,8 @@
 
 Ce projet met en œuvre une architecture microservices complète pour une application e-commerce, orchestrée à l’aide de **Docker Compose**. Elle inclut une base de données MySQL, un cache Redis, plusieurs services Spring Boot et un frontend React.
 
+🟥 Le microservice search-suggestion-service est en cours de développement
+
 ---
 
 ## 📦 Contenu des Services
