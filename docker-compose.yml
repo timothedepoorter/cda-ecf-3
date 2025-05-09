@@ -87,6 +87,27 @@ services:
     networks:
       - app-network
 
+  search-suggestion:
+    build:
+      context: ./server/search-suggestion-service     # chemin vers le projet Spring Boot
+      dockerfile: Dockerfile
+    container_name: search-suggestion
+    environment:
+      PORT: ${SEARCH_SUGGESTION_SERVICE_PORT}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_SCHEMA: ${DB_SCHEMA}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      ACTIVE_PROFILE: ${ACTIVE_PROFILE}
+      COMMON_DATA_SERVICE_PORT: ${COMMON_DATA_SERVICE_PORT}
+    ports:
+      - "10000:10000"
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - app-network
 
   front:
     build:
@@ -97,6 +118,7 @@ services:
       - common-data
       - authentication
       - payment
+      - search-suggestion
     ports:
       - "3000:80"
     networks:
